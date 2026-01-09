@@ -1,0 +1,23 @@
+package main1
+
+import "fmt"
+
+nums := []int{5, 2, 4, 1, 3}
+
+func main() {
+    StartWorkers(nums)
+}
+
+func StartWorkers(nums []int) {
+    ch := make(chan int)
+    for i := 0; i < 3; i++ {
+    go func() {
+    for n := range ch {
+    fmt.Println(n * n)
+    }
+    }()
+    }
+    for _, n := range nums {
+    ch <- n
+    }
+}
