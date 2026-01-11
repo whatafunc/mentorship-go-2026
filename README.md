@@ -8,6 +8,7 @@ It contains:
 - Code review examples
 - Testing and linting standards
 - Real-world architectural patterns
+- Tech interview prep
 
 The repository evolves as mentorship progresses.
 
