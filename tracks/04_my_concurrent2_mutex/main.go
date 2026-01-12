@@ -13,7 +13,6 @@ type myData struct {
 func main() {
 	myM := myData{}
 	wg := sync.WaitGroup{}
-	//mu := sync.Mutex{}
 	for i := 0; i < 1_000; i++ {
 		wg.Add(1)
 		go func(i int) {

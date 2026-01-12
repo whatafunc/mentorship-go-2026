@@ -33,7 +33,7 @@ func main() {
 	}
 	close(inputChan)               // Close the channel after sending all URLs - asap
 	workers := make([]struct{}, 3) // 3 workers
-	wg := sync.WaitGroup{}
+	wg := &sync.WaitGroup{}
 	for i := range workers {
 		wg.Add(1)
 		go func(id int) {

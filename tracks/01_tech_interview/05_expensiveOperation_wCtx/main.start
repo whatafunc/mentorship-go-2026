@@ -1,0 +1,14 @@
+func ProcessItems(items []string) []string {
+    results := []string{}
+    var wg sync.WaitGroup
+    for _, item := range items {
+        wg.Add(1)
+        go func() {
+            defer wg.Done()
+            processed := expensiveOperation(item)
+            results = append(results, processed)
+        }()
+    }
+    wg.Wait()
+    return results
+}
