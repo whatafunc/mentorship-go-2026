@@ -19,7 +19,7 @@ func main() {
 	out := make(chan int)
 
 	go func() {
-		for i := range 10 {
+		for i := 0; i < 10; i++ {
 			in <- i
 		}
 		close(in)
@@ -29,11 +29,25 @@ func main() {
 	processParallel(in, out, 5)
 
 	for v := range out {
-		fmt.Println("v =", v)
+		fmt.Println("Output in Main: v =", v)
 	}
 	fmt.Println("main duration:", time.Since(start))
 }
 
 func processParallel(in, out chan int, numWorkers int) {
 	// Реализация должна быть здесь
+	for i := 0; i < numWorkers; i++ {
+		go func() {
+			for v := range in {
+				result := processData(v)
+				out <- result
+			}
+		}()
+	}
+
+	go func() {
+		// Ждем завершения всех воркеров
+		time.Sleep(60 * time.Second) // Заглушка для ожидания завершения
+		close(out)
+	}()
 }
