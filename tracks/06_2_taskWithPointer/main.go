@@ -11,6 +11,7 @@ func f(counter *int) {
 	fmt.Println("f() called")
 }
 
+// copyright practicum.yandex.ru
 func main() {
 	// Получаем читателя пользовательского ввода
 	reader := bufio.NewReader(os.Stdin)
